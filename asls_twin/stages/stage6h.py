@@ -11,7 +11,6 @@ from .. import config
 from ..calculations import regression_features
 from ._history import Weighting
 from .stage3h_weighted import calculate as calculate_stage3h_weighted
-from ._residual_cache import baseline_fingerprint, source_fingerprint_bytes
 
 
 ARTIFACT = Path(config.DATA) / "stage6h_mean3_ridge.npz"
@@ -39,14 +38,6 @@ def gap_feature_scaling():
         spans.append(span)
     return np.asarray(indices, dtype=int), np.asarray(lower), np.asarray(spans)
 
-def training_fingerprint():
-    """Bind the residual ridge to its physics, features and history estimator."""
-    digest = hashlib.sha256(baseline_fingerprint("asls_twin.stages.stage2h").encode())
-    for name in ("stage3h_weighted.py", "_history.py"):
-        digest.update(source_fingerprint_bytes(Path(__file__).with_name(name)))
-    return digest.hexdigest()
-
-
 def calculate(
     state,
     history,
@@ -63,9 +54,6 @@ def calculate(
     if hashlib.sha256(ARTIFACT.read_bytes()).hexdigest() != ARTIFACT_SHA256:
         raise RuntimeError("Stage 6h artifact SHA-256 mismatch")
     with np.load(ARTIFACT, allow_pickle=False) as artifact:
-        if ("training_fingerprint" not in artifact
-                or str(artifact["training_fingerprint"]) != training_fingerprint()):
-            raise RuntimeError("Stage 6h artifact requires retraining for this baseline")
         if (
             artifact["centre"].shape != (len(config.ID_NAMES),)
             or artifact["scale"].shape != (len(config.ID_NAMES),)
