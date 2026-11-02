@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+*.egg-info/
+state/
+offline-bundle/
+
+live-test-runs/
+
+# Operator tooling and generated simulator records belong outside this repo.
+/twinEval/
+**/simulator/runs/
+.DS_Store

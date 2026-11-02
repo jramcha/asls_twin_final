@@ -1,0 +1,2 @@
+# Preserve upstream dependency bytes and their checksums.
+vendor/** -text -diff -whitespace

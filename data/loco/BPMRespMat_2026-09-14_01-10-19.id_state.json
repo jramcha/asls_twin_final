@@ -1,0 +1,28 @@
+{
+  "file_sha256": "0671a9e667d79e405ca028c0dcf418414f65c130a9bcdc0164ca4f2dc36ca3b4",
+  "id_state": {
+    "ID02": 0.05657014139416886,
+    "ID03": 7.6105,
+    "ID04": 6.0794,
+    "ID05": 38.001000000000005,
+    "ID08": 2.981650744043668,
+    "ID12": 18.16069984436035,
+    "ID13": 7.1705000000000005,
+    "ID14": 30.2235
+  },
+  "id_state_within_validated_range": true,
+  "lhs_run": 11,
+  "measurement_complete": true,
+  "metadata_source": "../loco_provenance/september_lhs21_20260913/run011_record.mat:before.ids",
+  "record_sha256": "ba3b4ff53041e624a591aad66f33b760b71db529910a47880340630304d6a17c",
+  "recorded_id_state": {
+    "ID02": 0.05657014139416886,
+    "ID03": 7.6105,
+    "ID04": 6.0794,
+    "ID05": 38.001000000000005,
+    "ID08": 2.981650744043668,
+    "ID12": 18.16069984436035,
+    "ID13": 7.1705000000000005,
+    "ID14": 30.2235
+  }
+}

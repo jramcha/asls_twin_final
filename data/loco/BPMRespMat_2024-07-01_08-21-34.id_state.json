@@ -1,0 +1,26 @@
+{
+  "file_sha256": "322c49796808794df973330c7ec26f89a49dd8a87aa3697f307687115816bd76",
+  "id_state": {
+    "ID02": 0.001,
+    "ID03": 38.919,
+    "ID04": 29.999,
+    "ID05": 37.902,
+    "ID08": 4.003,
+    "ID12": 18.159,
+    "ID13": 38.904,
+    "ID14": 109.391
+  },
+  "metadata_source": "../loco_provenance/id_states_2024.npz:dated_session_lookup",
+  "normalization": null,
+  "recorded_id_state": {
+    "ID02": 0.001,
+    "ID03": 38.919,
+    "ID04": 29.999,
+    "ID05": 37.902,
+    "ID08": 4.003,
+    "ID12": 18.159,
+    "ID13": 38.904,
+    "ID14": 109.391
+  },
+  "session_directory": "2024-07-01/08-21-17"
+}

@@ -1,0 +1,169 @@
+{
+  "provenance": {
+    "purpose": "Validated model values absent from the supplied MML AO; not substitutes for fields present in AO.",
+    "energy": "Operational 3.033 GeV override from the existing model. Packaged nominal lattice records 3.000 GeV; AO has no energy.",
+    "mode_settings": "setmodeasp_FRANK_24_04_2026.m; retained published mode strengths.",
+    "orm_scales": "Deployed Rxx/Ryy fudge factors, supported by response_sofb_system_20260819.mat. Not amp2k.",
+    "id_support": "Readback admission covers measured operating records, including September 2026 LHS. ID02 1.023 T was the former 2024-2025 observed maximum and remains the field normalization and feed-forward table endpoint; it is not a hardware limit. AO Status includes devices outside model/training coverage.",
+    "field_and_output_pvs": "Existing facility mapping; absent from supplied AO.",
+    "dispersion": "Frozen dispersion_reference_rbf_v1 training feature contract; absent from AO.",
+    "corrector_lattice_families": "Published corrector embedding in the packaged lattice. AO.AT.ATIndex belongs to another element layout."
+  },
+  "energy_ev": 3033000000.0,
+  "brho_tm": 10.1169988637723,
+  "default_machine_mode": 2,
+  "mode_settings": {
+    "1": {
+      "QFA": 1.723428335912745,
+      "QDA": -1.021524810038134,
+      "QFB": 1.506832980875907,
+      "SFA": 11.0,
+      "SDA": -12.0,
+      "SFB": 7.363955546172189,
+      "SDB": -7.179245538366332
+    },
+    "2": {
+      "QFA": 1.733644317160764,
+      "QDA": -1.022026077359464,
+      "QFB": 1.501323674315535,
+      "SFA": 11.0,
+      "SDA": -12.0,
+      "SFB": 7.758558385071983,
+      "SDB": -7.578367804452122
+    },
+    "10": {
+      "QFA": 1.735450634682162,
+      "QDA": -1.026232260610199,
+      "QFB": 1.50279856676156,
+      "SFA": 17.0,
+      "SDA": -16.6,
+      "SFB": 7.758558385071983,
+      "SDB": -7.578367804452122
+    }
+  },
+  "ofb_scales": {
+    "Rxx": 16323.69938225287,
+    "Ryy": 9741.079103674285
+  },
+  "loco_fit_scale_candidates": {
+    "2024": [
+      16855.994415168316,
+      9646.64811369551
+    ],
+    "2025": [
+      16937.64218998597,
+      9666.954115540537
+    ],
+    "2026": [
+      16963.56240768262,
+      9581.396503120894
+    ]
+  },
+  "id_names": [
+    "ID02",
+    "ID03",
+    "ID04",
+    "ID05",
+    "ID08",
+    "ID12",
+    "ID13",
+    "ID14"
+  ],
+  "gap_feature_period_mm": {
+    "ID03": 22.0,
+    "ID04": 17.5,
+    "ID05": 22.0,
+    "ID12": 100.0,
+    "ID13": 22.0,
+    "ID14": 75.0
+  },
+  "regression_feature_version": "id12-ivu-100mm-v1",
+  "field_pvs": {
+    "ID02": "SR02SCU01:FIELD_MONITOR",
+    "ID08": "SR08SCW01:FIELD_MONITOR"
+  },
+  "output_pvs": {
+    "Rxx": "SR00OFB01:H_RESPONSE_MATRIX",
+    "Ryy": "SR00OFB01:V_RESPONSE_MATRIX"
+  },
+  "id_readback_ranges": {
+    "ID02": [
+      -0.01,
+      1.1
+    ],
+    "ID03": [
+      6.0,
+      40.0
+    ],
+    "ID04": [
+      5.5,
+      30.0
+    ],
+    "ID05": [
+      5.5,
+      40.0
+    ],
+    "ID08": [
+      -0.01,
+      4.21
+    ],
+    "ID12": [
+      14.0,
+      206.0
+    ],
+    "ID13": [
+      6.0,
+      40.0
+    ],
+    "ID14": [
+      16.0,
+      110.0
+    ]
+  },
+  "field_max_t": {
+    "ID02": 1.023,
+    "ID08": 4.2
+  },
+  "gap_field_tables": {
+    "ID03": "gap_to_field/SR03_U22",
+    "ID04": "gap_to_field/SR04_U17",
+    "ID05": "gap_to_field/SR05_U22",
+    "ID12": "gap_to_field/SR12_W100",
+    "ID13": "gap_to_field/SR13_U22",
+    "ID14": "gap_to_field/SR14_EPU75"
+  },
+  "gap_field_endpoints": {
+    "ID04": [
+      30.0,
+      0.0
+    ],
+    "ID05": [
+      5.5,
+      0.96
+    ],
+    "ID14": [
+      110.0,
+      0.0
+    ]
+  },
+  "dispersion": {
+    "id_names": [
+      "ID03",
+      "ID05",
+      "ID13",
+      "ID08"
+    ],
+    "b0_ivu_t": 2.15,
+    "ivu_period_mm": 22.0
+  },
+  "corrector_lattice_families": {
+    "HCM": [
+      "SFA",
+      "SFB"
+    ],
+    "VCM": [
+      "SDA",
+      "SDB"
+    ]
+  }
+}

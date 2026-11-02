@@ -1,0 +1,47 @@
+[machine]
+# Relative to this config file; use an absolute path for a facility export.
+ao_mml = "asls_twin/data/MML_AO.mat"
+
+[service]
+stage = "3b"
+writes_enabled = false
+workers = 6
+loco_poll_seconds = 600
+loco_max_age_seconds = 3888000
+loco_complete_grace_seconds = 30
+# Legacy compatibility setting; file mtime never authorizes live ID attribution.
+loco_capture_window_seconds = 600
+
+[paths]
+loco_directory = "data/loco"
+registry_file = "state/loco_registry.json"
+reference_file = "state/verified_reference.npz"
+reference_metadata_file = "state/verified_reference.json"
+event_log = "state/events.jsonl"
+residual_cache_file = "state/residual_cache.npz"
+stage7_model_file = "state/stage7_active.npz"
+
+[update]
+# Select "idFrob", "idFrobCubed", or "time" (also supports "ormPredFrob").
+mode = "time"
+poll_seconds = 4
+# Maximum paired horizontal/vertical ORM push attempts per second.
+# Independent of polling/trigger thresholds; failed attempts count too.
+max_push_hz = 1.0
+
+time_period_seconds = 3600
+id_frob_trigger_percent = 1.0
+id_frob_cubed_trigger_percent = 1.0
+orm_prediction_trigger_percent = 0.5
+
+[safety]
+max_candidate_change_percent = 15.0
+readback_rtol = 1e-9
+readback_atol_nm_per_a = 1e-6
+
+[stage7]
+# Inclusive acquisition cutoff, in local machine time. Empty accepts all dates.
+# Example: training_start = "2026-09-01"
+training_start = ""
+# Optional SOFB ORM roots; empty uses paths.loco_directory.
+history_directories = []

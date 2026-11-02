@@ -1,0 +1,26 @@
+{
+  "file_sha256": "a6faca7f1091f12a48042709705867d5f86e67f3e13797efb6a671ec37aa41ac",
+  "id_state": {
+    "ID02": 0.525,
+    "ID03": 7.371,
+    "ID04": 5.937,
+    "ID05": 8.894,
+    "ID08": 2.991,
+    "ID12": 18.161,
+    "ID13": 6.672,
+    "ID14": 25.445
+  },
+  "metadata_source": "../loco_provenance/id_states_at_loco.mat:sorted_filtered_session_order",
+  "normalization": null,
+  "recorded_id_state": {
+    "ID02": 0.525,
+    "ID03": 7.371,
+    "ID04": 5.937,
+    "ID05": 8.894,
+    "ID08": 2.991,
+    "ID12": 18.161,
+    "ID13": 6.672,
+    "ID14": 25.445
+  },
+  "session_directory": "2025-06-22/08-14-23"
+}

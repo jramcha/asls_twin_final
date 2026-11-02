@@ -1,0 +1,26 @@
+{
+  "file_sha256": "05b8244ba7a4dabc1c04885ce45f7d85fb841676314f85c03634f275dc08cf23",
+  "id_state": {
+    "ID02": 0.11,
+    "ID03": 38.901,
+    "ID04": 30.0,
+    "ID05": 38.903,
+    "ID08": 3.002,
+    "ID12": 18.16,
+    "ID13": 38.904,
+    "ID14": 109.493
+  },
+  "metadata_source": "../loco_provenance/id_states_2024.npz:dated_session_lookup",
+  "normalization": "ID04 recorded 30.001 mm projected to the validated 30.000 mm model boundary",
+  "recorded_id_state": {
+    "ID02": 0.11,
+    "ID03": 38.901,
+    "ID04": 30.001,
+    "ID05": 38.903,
+    "ID08": 3.002,
+    "ID12": 18.16,
+    "ID13": 38.904,
+    "ID14": 109.493
+  },
+  "session_directory": "2024-04-21/08-23-49"
+}

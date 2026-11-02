@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asls-twin"
+version = "2.0.0"
+description = "Production orbit-response digital twin for the Australian Synchrotron"
+license = {text = "GPL-3.0-or-later"}
+authors = [{name = "Jai Ramchandani"}]
+requires-python = ">=3.9,<3.14"
+dependencies = [
+  "numpy>=1.26,<3",
+  "scipy>=1.13,<2",
+  "accelerator-toolbox>=0.7,<1",
+  "pyepics>=3.5,<4",
+  "tomli==2.4.1; python_version < '3.11'",
+  "numpy==2.0.2; python_version < '3.10'",
+  "scipy==1.13.1; python_version < '3.10'",
+  "accelerator-toolbox==0.7.1; python_version < '3.10'",
+  "pyepics==3.5.8; python_version < '3.10'",
+  "pyparsing==3.3.2; python_version < '3.10'",
+]
+
+[project.scripts]
+asls-twin = "main:cli"
+asls-fofb = "asls_twin.fofb_cli:cli"
+
+[tool.setuptools]
+py-modules = ["main", "asls_runtime"]
+
+[tool.setuptools.packages.find]
+include = ["asls_twin*"]
+
+[tool.setuptools.package-data]
+asls_twin = ["data/**/*"]
