@@ -3,7 +3,7 @@
 ao_mml = "asls_twin/data/MML_AO.mat"
 
 [service]
-stage = "3b"
+stage = "3h_weighted"
 writes_enabled = false
 workers = 6
 loco_poll_seconds = 600

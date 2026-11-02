@@ -94,11 +94,6 @@ def build_stage2h_ring(state, beam_current_A):
     return apply_whole_ring_current(ring, beam_current_A)
 
 
-def build_stage2ha_ring(state, beam_current_A):
-    """Shared baseline for callers using the former Stage 2ha entry point."""
-    return build_stage2h_ring(state, beam_current_A)
-
-
 def build_id_ring(state):
     """Build the ID and feed-forward optics without the current correction."""
     ring = load_ring()

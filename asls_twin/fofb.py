@@ -21,8 +21,7 @@ from .types import ORM
 
 
 BLOCKS = ("Rxx", "Ryx", "Rxy", "Ryy")
-STAGES = ("0", "1a", "1b", "1c", "2a", "2h", "3a", "3b", "3c",
-          "3h", "3h_weighted", "6h", "7a")
+STAGES = ("0", "1", "2a", "2h", "3h", "3h_weighted", "6h", "7a")
 
 
 def combine(values, weights):
@@ -133,21 +132,20 @@ class FOFBTwin:
 
     def _scaled_physics(self, stage, state, current, *, workers=1):
         if self.scales is None:
-            raise ValueError("FOFB Stage 3/6 requires FOFB scales; no SOFB factors are reused")
+            raise ValueError("FOFB Stages 3h/6h require FOFB scales; no SOFB factors are reused")
         return orm_generation.at_to_ofb(self._physics(stage, state, current, workers=workers),
                                          scales=self.scales)
 
     def _stage3(self, stage, state, history, current, target, *, workers=1):
         records = eligible_history(history, target_time=target, require_ids=True)
-        method = {"3a": "last", "3b": "mean3", "3c": "weighted",
-                  "3h": "mean3", "3h_weighted": "weighted"}[stage]
-        count = {"last": 1, "mean3": 3}.get(method)
+        method = {"3h": "mean3", "3h_weighted": "weighted"}[stage]
+        count = {"mean3": 3}.get(method)
         if not records or (count is not None and len(records) < count):
             raise RuntimeError("insufficient earlier ID-associated FOFB measurements")
         records = records[-count:] if count is not None else records
         weights = (history_weights(records, state, current, target) if method == "weighted"
                    else np.ones(len(records)) / len(records))
-        physics = "2h" if stage in ("3h", "3h_weighted") else "2a"
+        physics = "2h"
         residuals = [combine([r.orm, self._scaled_physics(
             physics, dict(r.id_state), r.beam_current_A, workers=workers)], [1, -1])
                      for r in records]
@@ -187,20 +185,16 @@ class FOFBTwin:
             return result
         if units not in (None, "nm/A"):
             raise ValueError("measured and learned FOFB stages return nm/A")
-        if stage in ("1a", "1b", "1c"):
-            records = eligible_history(history, target_time=target, require_ids=stage == "1c")
-            count = {"1a": 1, "1b": 3}.get(stage)
-            if not records or (count is not None and len(records) < count):
+        if stage == "1":
+            records = eligible_history(history, target_time=target, require_ids=False)
+            count = config.HISTORY_COUNT
+            if len(records) < count:
                 raise RuntimeError("insufficient earlier FOFB measurements")
-            records = records[-count:] if count is not None else records
-            weights = (history_weights(records, state, beam_current_A, target) if stage == "1c"
-                       else np.ones(len(records)) / len(records))
-            return combine([r.orm for r in records], weights)
+            records = records[-count:]
+            return combine([r.orm for r in records], np.ones(count) / count)
         if stage == "7a":
             return self.stage7.predict(state)
         if stage == "6h":
-            if not allow_experimental:
-                raise ValueError("FOFB Stage 6h requires explicit experimental opt-in")
             correction = self.stage6.predict(state)
             baseline = self._stage3("3h_weighted", state, history, beam_current_A, target)
             return combine([baseline, correction], [1, 1])

@@ -34,7 +34,6 @@ REGRESSION_ARTIFACT_SHA256 = "69ac051f1e85850f8e4b7ad64e3cac11999a7bc1181ee63e99
 MODEL_REFERENCE_FILE = DATA / "model_reference.json"
 MODEL_REFERENCE = json.loads(MODEL_REFERENCE_FILE.read_text())
 ENERGY_EV = float(MODEL_REFERENCE["energy_ev"])
-BRHO = float(MODEL_REFERENCE["brho_tm"])
 DEFAULT_MACHINE_MODE = int(MODEL_REFERENCE["default_machine_mode"])
 MODE_SETTINGS = {int(k): v for k, v in MODEL_REFERENCE["mode_settings"].items()}
 ID_NAMES = tuple(MODEL_REFERENCE["id_names"])
@@ -45,7 +44,6 @@ REGRESSION_FEATURE_VERSION = MODEL_REFERENCE["regression_feature_version"]
 # response blocks.
 OFB_RXX_SCALE = float(MODEL_REFERENCE["ofb_scales"]["Rxx"])
 OFB_RYY_SCALE = float(MODEL_REFERENCE["ofb_scales"]["Ryy"])
-LOCO_FIT_SCALE_CANDIDATES = {int(k): tuple(v) for k, v in MODEL_REFERENCE["loco_fit_scale_candidates"].items()}
 DEPLOYED_ORM_REFERENCE_MAT = DATA / "response_sofb_system_20260819.mat"
 ID_READBACK_RANGES = {k: tuple(v) for k, v in MODEL_REFERENCE["id_readback_ranges"].items()}
 FIELD_MAX_T = MODEL_REFERENCE["field_max_t"]
@@ -69,7 +67,6 @@ STAGE3H_HISTORY_CURRENT_SCALE_FLOOR_A = 0.020  # 20 mA
 
 DEFAULT_EPICS_TIMEOUT = 2.0
 LIVE_ID_CHANGE_TOLERANCE = {"field": 0.001, "gap": 0.01}
-LIVE_BEAM_CURRENT_MAX_A = 1.0
 
 # Use the packaged AO as the reference for device ordering and supported units
 PACKAGED_AO_MML = DATA / "MML_AO.mat"
@@ -258,7 +255,7 @@ def load_config(path: str | Path = "config.toml") -> RuntimeConfig:
     # modules also depend on this configuration module.
     from .stages import normalize_stage
 
-    stage = normalize_stage(service.get("stage", "3b"))
+    stage = normalize_stage(service.get("stage", "3h_weighted"))
 
     safety = SafetyConfig(
         max_candidate_change_percent=float(

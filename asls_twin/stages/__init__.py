@@ -12,14 +12,9 @@ if TYPE_CHECKING:
 
 AVAILABLE_STAGES = (
     "0",
-    "1a",
-    "1b",
-    "1c",
+    "1",
     "2a",
     "2h",
-    "3a",
-    "3b",
-    "3c",
     "3h",
     "3h_weighted",
     "6h",
@@ -28,17 +23,13 @@ AVAILABLE_STAGES = (
 
 # These implementations are committed for bounded offline evaluation. They are
 # not selectable by the long-running service without an explicit opt-in.
-EXPERIMENTAL_STAGES = frozenset(("6h",))
-CURRENT_STAGES = frozenset(("1c", "2h", "3c", "3h", "3h_weighted", "6h"))
+EXPERIMENTAL_STAGES = frozenset()
+CURRENT_STAGES = frozenset(("2h", "3h", "3h_weighted", "6h"))
 
 
 def normalize_stage(stage: str | int) -> str:
     label = str(stage).strip().lower()
     if label not in AVAILABLE_STAGES:
-        if label == "6a":
-            raise NotImplementedError(
-                "Stage 6a needs a ridge artifact trained against Stage 3c"
-            )
         raise ValueError(f"unknown stage {stage!r}")
     return label
 
@@ -49,7 +40,7 @@ def stage_catalog(system="SOFB") -> dict[str, dict[str, bool]]:
     if system == "FOFB":
         from ..fofb import STAGES
         return {label: {"requires_beam_current": label in CURRENT_STAGES,
-                        "experimental": label == "6h"} for label in STAGES}
+                        "experimental": label in EXPERIMENTAL_STAGES} for label in STAGES}
     return {
         label: {
             "requires_beam_current": label in CURRENT_STAGES,
