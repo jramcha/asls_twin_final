@@ -12,7 +12,7 @@ The hardware of the system is ran on a VM at the synchrotron, and it is presumab
 
 Copyright (C) 2026 Adelaide University.
 
-Contributor and contact for any information: Jai Ramchandani (GitHub: jramcha).
+Contributor and contact for any information: Jai Ramchandani (GitHub: jramcha, email: jai.ramchandani@gmail.com, LinkedIn: linkedin.com/in/jramc).
 
 This program is free software: you can redistribute it and/or modify it under the terms of the
 GNU General Public License as published by the Free Software Foundation, either version 3 of the
