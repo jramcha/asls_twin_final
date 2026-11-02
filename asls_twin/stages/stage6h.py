@@ -15,7 +15,7 @@ from ._residual_cache import baseline_fingerprint, source_fingerprint_bytes
 
 
 ARTIFACT = Path(config.DATA) / "stage6h_mean3_ridge.npz"
-ARTIFACT_SHA256 = "cc3405afb4db89d4773e5e3d061d619ee425c4e9ef26f8658fc1cbc88e7fa52b"
+ARTIFACT_SHA256 = "cf496416213a3803921df487409048472c1bbe513fc4554148ee36081e4b26e5"
 GAP_SCALING = "physical_b_squared_range_v1"
 
 
